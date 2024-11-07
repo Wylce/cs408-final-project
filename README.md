@@ -21,7 +21,8 @@ won't display, since comments correspond to a specific page. The gallery should 
 just one html file, so that moving between pages of the comic will involve loading in the
 associated image file, description text, and reader comment text. The data that the website
 handles will primarily be the images of the pages, as well as the text content that
-goes with them.
+goes with them. I'll need to figure out a format, probably some form of json, that I
+can use to write and save page descriptions and associate them with the right image file.
 
 Although the gallery page will be the focus, I want the Home page to be separate,
 with a simpler design that directs the user to different parts of the site. It will include
