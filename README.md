@@ -33,11 +33,11 @@ and for potential employers, so while the one comic is the focus, I'd also want 
 that people interested in my stuff could see more of it.
 
 The main target audience of the website is webcomic readers, which isn't exactly huge
-but is still a strong community that's already used to the design conventions that have
+but is still an established community that's already used to the design conventions that have
 been standardized by other comic hosing sites. I'm using a lot of the same layout elements
 that I see other artists using, like the central page, the arrow buttons, and the description,
 because these are basic quality-of-life features that readers have learned to expect. There
-are still a couple new-ish features I want to try to see how they work, like the option to display
+are also a couple new features I don't see as often that I want to try, like the option to display
 two pages at once like a physical book. The comments section is another thing that's common,
 and that can help encourage readers to interact with and talk about the comic. However, since
 this is also supposed to be a page I could show to employers as an example of my portfolio, I'd
@@ -55,4 +55,4 @@ something I should look into implementing.
 
 TODO: Replace the wireframe below with you own design.
 
-![wireframe](wireframe-example.png)
+![wireframe](FinalGalleryWireframe.JPG)
