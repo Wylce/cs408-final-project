@@ -57,3 +57,7 @@ something I should look into implementing.
 TODO: Replace the wireframe below with you own design.
 
 ![wireframe](FinalGalleryWireframe.JPG)
+
+
+## Sources
+https://github.com/geno7/Rarebit.git
