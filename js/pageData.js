@@ -7,7 +7,7 @@ const pageData = [
     },
 
     {
-        pageNum: 1,
+        pageNum: 2,
         title: "Faulty wiring",
         alt: "Panel 1: An overhead shot inside the gas station store. A bored cashier is sitting alone at the counter."
                 + "Panel 2: The cashier is looking at her phone. Panel 3 and 4: The lights flicker and go out."
@@ -23,7 +23,7 @@ const pageData = [
     },
 
     {
-        pageNume: 4,
+        pageNum: 4,
         title: "Empty",
         alt: "Panel 1: The cashier stands under the night sky next to the milk crate, looking out into the flat, empty desert landscape and the hills in the distance. "
             + "Panel 2 and 3: The cashier walks back into the gas station, closing the door behind her.",

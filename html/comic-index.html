@@ -12,5 +12,19 @@
 <body align="center">
     <div class="write-header"></div>
 
-    <script src="../js/components.js" defer></script>
+    <main>
+      <h2>Pages</h2>
+
+      <form id="page-filter">
+        <label for="filter">Filter Pages: </label>
+        <input type="text" id="filter" name="filter">
+        <input type="submit" value="Go">
+      </form>
+
+      <div class="write-index"></div>
+      
+      <script src="../js/pageData.js" defer></script>
+      <script type="module" src="../js/components.js" defer></script>
+      <script type="module" src="../js/comicIndex.js" defer></script>
+    </main>
 </body>

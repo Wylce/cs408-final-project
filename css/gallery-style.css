@@ -5,3 +5,18 @@
 .inactive-nav{
     opacity: .6;
 }
+
+#gallery{
+    background-color: white;
+}
+
+@media only screen and (max-width: 1000px) {
+    .page-display{
+        width: 100%;
+    }
+
+    .active-nav, .inactive-nav{
+        width: 15%;
+    }
+
+}

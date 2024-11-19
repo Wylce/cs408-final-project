@@ -1,5 +1,5 @@
-import {findGetParameter} from '../js/gallery.js';
-import {pageFromURL} from '../js/gallery.js';
+import {findGetParameter} from '../js/components.js';
+import {pageFromURL} from '../js/components.js';
 //import {displayPage} from '../js/gallery.js';
 
 QUnit.module('URL-Parsing', function() {

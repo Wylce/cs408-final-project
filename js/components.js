@@ -11,3 +11,27 @@ document.querySelector(".write-header").innerHTML = `
     </nav>
   </header>
 `;
+
+export function pageFromURL(url){
+  const page = findGetParameter(url, "page");
+  if (!page){
+      throw new Error ("Unable to parse parameter 'page' from url.");
+  }
+
+  const pageNum = Number(page)
+
+  if(!pageNum || page <= 0 || page > pageData.length){
+      throw new Error('Page ' + page + ' does not exist.');
+  }
+  return pageNum;
+}
+
+export function findGetParameter(url, parameterName){
+  let result = null;
+  let item = url.search.substr(1);
+  //let items = location.search.substr(1).split("&");
+  let tmp = item.split("=");
+  if (tmp[0] === parameterName) result = tmp[1]; //decodeURIcomponent(tmp[1])
+
+  return result;
+}
