@@ -1,0 +1,36 @@
+.link-list{
+    background-color: white;
+
+    list-style: none;
+    /*display: grid;*/
+    /*grid-template-columns: 1fr 1fr 1fr 1fr*/
+
+    font-size: 1.3em;
+    line-height: 3em;
+
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.link-list li{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.link-list li:hover{
+    font-size: 1.3em;
+}
+
+.thumbnail{
+    width: 150px;
+}
+
+
+@media only screen and (max-width: 1000px) {
+    .link-list a{
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+}

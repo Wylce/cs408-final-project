@@ -6,8 +6,9 @@ writeIndex(".write-index");
 function writeIndex(div){
     let content = `<ul class="link-list">`;
     pageData.forEach((element) => {
-        content += "<li>";
-        content += `<a href="gallery.html?page=` + element.pageNum + `" title="` + element.title + `"> Page ` + element.pageNum + `</a><br>`;
+        content += `<li class="page-index">`;
+        content += `<a href="gallery.html?page=` + element.pageNum + `" title="` + element.title + `"> Page ` + element.pageNum + `<br><img class="thumbnail" src="../thumbnails/thumb-` + element.pageNum + `.jpg" alt="Page ` + element.pageNum + `thumbnail"></a><br>`;
+        content += ``
         content += "</li>";
     })
     content += "</ul>"

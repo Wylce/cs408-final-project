@@ -10,21 +10,31 @@ body{
   height: 100%;
 }
 
+header{
+  background-image: url("../assets/banner.jpg");
+  background-size: cover;
+}
+
 main{
   background-color: white;
   margin-bottom: auto;
   height: 100%;
-
   padding-top: 40px;
 
 }
 
+.horizontal-list{
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
 article{
+  background-color: white;
   margin-left: 200px;
   margin-right: 200px;
   padding-left: 20px;
   padding-right: 20px;
-  border: 1px solid black;
 }
 
 p{
@@ -38,6 +48,8 @@ h1{
   text-align: right;
   font-size: 3em;
   color: white;
+  padding-top: 80px;
+  padding-right: 40px;
 }
 
 h2{
@@ -68,4 +80,24 @@ nav ul li a{
 nav ul li a:hover{
   text-decoration: none;
   background-color: rgb(238, 237, 237);
+}
+
+article section{
+  display: flex;
+}
+
+.character-profile{
+  display: flex;
+  justify-content: space-between;
+}
+
+.work-samples{
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.work-samples img{
+  max-width: 250px;
 }
