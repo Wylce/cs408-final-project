@@ -14,14 +14,30 @@
   <div class="write-header"></div>
 
   <main>
-    <div id="gallery">
+    <section id="gallery">
         <div class="writePageButtons">
             <!--make the buttons a link, parse link into the appropriate page?-->
         </div>
       <img id="page-display">
       <div class="displayPage"></div>
       <div class="writePageButtons"></div>
-    </div>
+    </section>
+
+    <section id="page-description">
+      <div class="writeTags"></div>
+    </section>
+
+    <section id="page-comments">
+      <h2>Comments</h2>
+      <form id="comments-submission">
+        <label for-="username">Your name:</label>
+        <input type="text" id="username" name="username" required><br>
+        <label for="comment">Leave a comment:</label>
+        <textarea id="comment" name="comment" rows="5" cols="60"></textarea>
+        <input type="submit" value="Submit Comment">
+      </form>
+      <div class="writeComments"></div>
+    </section>
   </main>
 
   <script src="../js/pageData.js" defer></script>

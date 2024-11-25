@@ -18,12 +18,16 @@
     padding-right: 20px;
 }
 
-.link-list li:hover{
-    font-size: 1.3em;
-}
-
 .thumbnail{
     width: 150px;
+}
+
+.tag-list{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    width: 150px;
+    
 }
 
 

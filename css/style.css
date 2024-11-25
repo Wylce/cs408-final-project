@@ -23,6 +23,10 @@ main{
 
 }
 
+section{
+  background-color: white;
+}
+
 .horizontal-list{
   list-style: none;
   display: flex;
@@ -30,7 +34,6 @@ main{
 }
 
 article{
-  background-color: white;
   margin-left: 200px;
   margin-right: 200px;
   padding-left: 20px;

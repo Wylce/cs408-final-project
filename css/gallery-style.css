@@ -6,8 +6,28 @@
     opacity: .6;
 }
 
-#gallery{
+section{
     background-color: white;
+}
+
+.tag-list{
+    font-size: 1.3em;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tag-list li{
+    padding-left: 1em;
+}
+
+#page-comments{
+    text-align: left;
+    padding-left: 150px;
+}
+
+#comments-submission{
+    display: block;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -17,6 +37,14 @@
 
     .active-nav, .inactive-nav{
         width: 15%;
+    }
+
+    #page-comments{
+        padding-left: 5%;
+    }
+
+    textarea{
+        width: 90%;
     }
 
 }

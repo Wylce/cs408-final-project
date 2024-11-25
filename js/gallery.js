@@ -19,6 +19,7 @@ const ext = "jpg";
 
 writePageButtons();
 displayPage(".displayPage");
+writeTags(".writeTags", currentPage);
 
 
 export function displayPage(div) {
@@ -103,4 +104,15 @@ function writePageButtons() {
         }
 
     }
+}
+
+function writeTags(div, pageNum){
+    let content = "";
+
+    content += `<ul class="tag-list"> tags: `;
+    pageData[pageNum - 1].tags.forEach((tag) => {
+        content += `<li><a href="comic-index.html?filter=` + tag + `"> ` + tag + `</a></li>`;
+    })
+    content += "</ul></li>";
+    document.querySelector(div).innerHTML = content;
 }
