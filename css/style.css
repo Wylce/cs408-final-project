@@ -85,8 +85,12 @@ nav ul li a:hover{
   background-color: rgb(238, 237, 237);
 }
 
-article section{
-  display: flex;
+section{
+  background-color: white;
+  margin-top: 15px;
+  padding-top: 15px;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
 }
 
 .character-profile{

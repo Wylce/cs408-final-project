@@ -28,21 +28,28 @@
     </section>
 
     <section id="page-comments">
-      <h2>Comments</h2>
-      <form id="comments-submission">
-        <label for-="username">Your name:</label>
-        <input type="text" id="username" name="username" required><br>
-        <label for="comment">Leave a comment:</label>
-        <textarea id="comment" name="comment" rows="5" cols="60"></textarea>
-        <input type="submit" value="Submit Comment">
-      </form>
-      <div class="writeComments"></div>
+      <div id="column1">
+        <h2>Comments</h2>
+        <div class="writeComments"></div>
+      </div>
+      <div id="column2">
+        <form id="comments-submission">
+
+          <legend>Write comment:</legend>
+          <label for-="username">Your name:</label>
+          <input type="text" id="username" name="username" required><br>
+          <label for="comment">Leave a comment:</label>
+          <textarea id="comment" name="comment" rows="5" cols="60"></textarea>
+          <input type="submit" value="Submit Comment">
+        </form>
+      </div>
     </section>
   </main>
 
   <script src="../js/pageData.js" defer></script>
   <script type="module" src="../js/components.js" defer></script>
   <script type="module" src="../js/gallery.js" defer></script>
+  <script type="module" src="../js/commentsHandler.js" defer></script>
 </body>
 
 </html>

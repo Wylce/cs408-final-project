@@ -6,8 +6,21 @@
     opacity: .6;
 }
 
+.comic-nav{
+    align-items: center;
+    display: inline-flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 0px;
+    font-size: 2em;
+}
+
 section{
     background-color: white;
+    margin-top: 15px;
+    padding-top: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
 }
 
 .tag-list{
@@ -23,7 +36,21 @@ section{
 
 #page-comments{
     text-align: left;
-    padding-left: 150px;
+    padding-left: 180px;
+    padding-right: 200px;
+
+    display: grid;
+    grid-template-columns: 1.3fr .7fr;
+}
+
+legend{
+    font-size: 1.5em;
+    padding: 0px;
+    margin: 0px;
+}
+
+#column2{
+    padding-top: 5rem;
 }
 
 #comments-submission{
@@ -36,11 +63,12 @@ section{
     }
 
     .active-nav, .inactive-nav{
-        width: 15%;
+        width: 50px;
     }
 
     #page-comments{
         padding-left: 5%;
+        padding-right: 5%;
     }
 
     textarea{

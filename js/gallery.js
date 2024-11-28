@@ -1,5 +1,8 @@
 import {findGetParameter} from '../js/components.js';
 import {pageFromURL} from '../js/components.js';
+import {getPageComments, deleteComment} from '../js/commentsHandler.js';
+
+import {commentPostEvent} from '../js/commentsHandler.js';
 
 let currentPage = null;
 try {
@@ -12,6 +15,10 @@ try {
 
 console.log("Current page: " + currentPage);
 
+export function getCurrentPage(){
+    return currentPage;
+}
+
 //Components of the page image file addresses
 const imgFolder = "../pages";
 const pre = "page-";
@@ -20,6 +27,7 @@ const ext = "jpg";
 writePageButtons();
 displayPage(".displayPage");
 writeTags(".writeTags", currentPage);
+writeComments(".writeComments");
 
 
 export function displayPage(div) {
@@ -38,7 +46,6 @@ export function displayPage(div) {
         altText = pageInfo.altText;
         title = pageInfo.title;
 
-        const path = imgFolder.concat("/", pre, currentPage, ".", ext)
         document.querySelector(div).innerHTML = getPageHtml(currentPage);
     }
 }
@@ -68,10 +75,11 @@ export function getPageHtml(page){
 function writePageButtons() {
     let pageButtonDiv = document.querySelectorAll(".writePageButtons");
     pageButtonDiv.forEach(function(divElement) {
-        divElement.innerHTML = `<div class="comicNav">
+        divElement.innerHTML = `<div class="comic-nav">
             ${prevButton()}
+            <p class="page-number">${currentPage}</p>
             ${nextButton()}
-            `;
+            </div>`;
     })
 
     function prevButton() {
@@ -115,4 +123,47 @@ function writeTags(div, pageNum){
     })
     content += "</ul></li>";
     document.querySelector(div).innerHTML = content;
+}
+
+export function writeComments(div){
+    const holder = new Object();
+
+    document.addEventListener('dataReady', function () {
+        //Empty the div so that an updated comments list isn't added to the end when posted or deleted
+        document.querySelector(div).innerHTML = '';
+        const commentList = document.createElement('ul');
+        holder.data.forEach((comment) => {
+            //The Comment ID is the date in milliseconds when the comment was created
+            //Need to parse that string back into a number, then into a datetime
+            const timestamp = new Date(parseInt(comment.commentId));
+            var commentDiv = document.createElement('div');
+            commentDiv.setAttribute("class", "comment-container");
+            commentDiv.innerHTML = `<h3 class="comment-author">` + comment.author + `</h3>`
+                    + `<time datetime="` + timestamp + `">` + timestamp + `</time>`
+                    + `<p class="comment-content">` + comment.content + `</p>`;
+
+            const deleteLink = document.createElement('a');
+            deleteLink.setAttribute("href", "#");
+            deleteLink.setAttribute("title", "Delete");
+            deleteLink.textContent = "Delete Comment";
+            deleteLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                deleteComment(currentPage, comment.commentId);
+            });
+            commentDiv.append(deleteLink);
+            //content = innerContent + content;
+            //commentList.appendChild(commentDiv);
+            commentList.insertBefore(commentDiv, commentList.firstChild);
+        })
+        //outerContent += content;
+        //outerContent += `</ul>`;
+        document.querySelector(div).appendChild(commentList);
+        console.log(holder.data);
+    })
+
+    getPageComments(holder, currentPage);
+}
+
+function sayHi(){
+    alert("hi");
 }

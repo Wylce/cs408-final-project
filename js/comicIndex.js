@@ -8,7 +8,6 @@ writeIndex(".write-index");
 function writeIndex(div){
     let filter = findGetParameter(location, "filter");
     console.log(filter);
-
     let content = `<ul class="link-list">`;
 
     let filteredIndex = [];
@@ -16,6 +15,7 @@ function writeIndex(div){
     if (!filter){
         filteredIndex = pageData;
     } else {
+        filter = filter.toLowerCase()
         pageData.forEach((element) => {
             element.tags.forEach((tag) => {
                 if (tag === filter){
