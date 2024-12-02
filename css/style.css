@@ -1,6 +1,9 @@
 html{
   background-color:black;
   height: 100%;
+
+  font-family:Arial, Helvetica, sans-serif;
+
 }
 
 body{
@@ -24,8 +27,12 @@ section{
   background-color: white;
   margin-top: 15px;
   padding-top: 15px;
+  padding-left: 18%;
+  padding-right: 18%;
   margin-bottom: 25px;
   padding-bottom: 20px;
+  border-left-style: inset;
+  border-right-style: inset;
 }
 
 .horizontal-list{
@@ -35,16 +42,16 @@ section{
 }
 
 article{
-  padding-left: 18%;
-  padding-right: 18%;
+  
 
-  background-color: white;
 
   border: 1px solid black;
 
 }
 
 p{
+  font-family:Arial, Helvetica, sans-serif;
+
   display: flex;
   text-align: left;
   justify-self: center;
@@ -67,6 +74,10 @@ h1{
 h2{
   font-size: 2em;
   background-color: white;
+}
+
+h3{
+  text-align: left;
 }
 
 nav{
@@ -138,18 +149,23 @@ section{
 
 @media only screen and (max-width: 1000px) {
   
+  body{
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   .two-column{
     grid-template-columns: 1fr;
   }
 
   section{
-    margin-left: 5%;
-    margin-right: 5%;
+    padding-left: 2%;
+    padding-right: 2%;
   }
 
   article{
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 0;
+    margin-right: 0;
 
   }
 }

@@ -136,6 +136,7 @@ export function writeComments(div){
             //The Comment ID is the date in milliseconds when the comment was created
             //Need to parse that string back into a number, then into a datetime
             const timestamp = new Date(parseInt(comment.commentId));
+            
             var commentDiv = document.createElement('div');
             commentDiv.setAttribute("class", "comment-container");
 
@@ -146,7 +147,7 @@ export function writeComments(div){
 
             let time = document.createElement('time');
             time.dateTime = timestamp;
-            time.textContent = timestamp;
+            time.textContent = formatDate(timestamp);
             commentDiv.appendChild(time);
             
             let paragraph = document.createElement('p');
@@ -174,6 +175,17 @@ export function writeComments(div){
     })
 
     getPageComments(holder, currentPage);
+}
+
+function formatDate(date){
+    var dateString = date.toDateString().substring(3);
+    var hour = date.getHours();
+    var ampm = "am";
+    if(hour > 12){
+        hour = hour - 12;
+        ampm = "pm";
+    }
+    return `${dateString}, ${hour}:${date.getMinutes()} ${ampm}`;
 }
 
 function sayHi(){
