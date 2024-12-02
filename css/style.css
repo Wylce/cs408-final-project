@@ -16,15 +16,16 @@ header{
 }
 
 main{
-  background-color: white;
   margin-bottom: auto;
-  height: 100%;
   padding-top: 40px;
-
 }
 
 section{
   background-color: white;
+  margin-top: 15px;
+  padding-top: 15px;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
 }
 
 .horizontal-list{
@@ -34,17 +35,25 @@ section{
 }
 
 article{
-  margin-left: 200px;
-  margin-right: 200px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 18%;
+  padding-right: 18%;
+
+  background-color: white;
+
+  border: 1px solid black;
+
 }
 
 p{
   display: flex;
   text-align: left;
   justify-self: center;
-  width: 60%;
+  font-size: 1.2em;
+  margin-left: 1em;
+}
+
+strong{
+  font-size: 1.1em;
 }
 
 h1{
@@ -57,6 +66,7 @@ h1{
 
 h2{
   font-size: 2em;
+  background-color: white;
 }
 
 nav{
@@ -90,12 +100,29 @@ section{
   margin-top: 15px;
   padding-top: 15px;
   margin-bottom: 25px;
-  padding-bottom: 20px;
+  padding-bottom: 15px;
+
+}
+
+.two-column{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.text-panel{
+  text-align: left;
+  padding: 5px;
 }
 
 .character-profile{
   display: flex;
-  justify-content: space-between;
+  margin-right: 5%;
+  margin-left: 5%;
+  border: 1px solid black;
+}
+
+.character-profile img{
+  height: 100%;
 }
 
 .work-samples{
@@ -107,4 +134,22 @@ section{
 
 .work-samples img{
   max-width: 250px;
+}
+
+@media only screen and (max-width: 1000px) {
+  
+  .two-column{
+    grid-template-columns: 1fr;
+  }
+
+  section{
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  article{
+    margin-left: 5%;
+    margin-right: 5%;
+
+  }
 }

@@ -138,9 +138,21 @@ export function writeComments(div){
             const timestamp = new Date(parseInt(comment.commentId));
             var commentDiv = document.createElement('div');
             commentDiv.setAttribute("class", "comment-container");
-            commentDiv.innerHTML = `<h3 class="comment-author">` + comment.author + `</h3>`
-                    + `<time datetime="` + timestamp + `">` + timestamp + `</time>`
-                    + `<p class="comment-content">` + comment.content + `</p>`;
+
+            let header = document.createElement('h3');
+            header.class = "comment-author";
+            header.textContent = comment.author;
+            commentDiv.appendChild(header);
+
+            let time = document.createElement('time');
+            time.dateTime = timestamp;
+            time.textContent = timestamp;
+            commentDiv.appendChild(time);
+            
+            let paragraph = document.createElement('p');
+            paragraph.class = "comment-content";
+            paragraph.textContent = comment.content;
+            commentDiv.appendChild(paragraph);
 
             const deleteLink = document.createElement('a');
             deleteLink.setAttribute("href", "#");
