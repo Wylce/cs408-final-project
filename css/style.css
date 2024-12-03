@@ -20,7 +20,6 @@ header{
 
 main{
   margin-bottom: auto;
-  padding-top: 40px;
 }
 
 section{
@@ -41,20 +40,11 @@ section{
   justify-content: space-between;
 }
 
-article{
-  
-
-
-  border: 1px solid black;
-
-}
-
 p{
   font-family:Arial, Helvetica, sans-serif;
 
   display: flex;
   text-align: left;
-  justify-self: center;
   font-size: 1.2em;
   margin-left: 1em;
 }
@@ -129,7 +119,8 @@ section{
   display: flex;
   margin-right: 5%;
   margin-left: 5%;
-  border: 1px solid black;
+  padding-right: 8px;
+  background-color: rgb(233, 231, 238);
 }
 
 .character-profile img{
@@ -140,11 +131,31 @@ section{
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 10px;
+  justify-content: center;
 }
 
 .work-samples img{
   max-width: 250px;
+}
+
+.focusable:hover{
+  cursor: pointer;
+  transform: scale(110%);
+}
+
+.focus-image{
+  position: fixed;
+  border: 5px solid white;
+  left: 50%;
+  top: 30%;
+  transform: translateX(-50%);
+  transform: translateY(-50%);
+  transform: scale(250%);
+}
+
+.focus-image:hover{
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -167,5 +178,10 @@ section{
     margin-left: 0;
     margin-right: 0;
 
+  }
+
+  .focus-image{
+    left: 40%;
+    width: 30%;
   }
 }
