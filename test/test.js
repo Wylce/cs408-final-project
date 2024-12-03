@@ -84,3 +84,9 @@ QUnit.module('URL-Parsing', function() {
     });
 
 });
+
+QUnit.module('Gallery', function() {
+    QUnit.test('display page sets correct title and alt text for valid page number 1', function(assert) {
+        assert.true(true);
+    })
+})

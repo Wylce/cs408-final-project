@@ -7,7 +7,6 @@ export const commentPostEvent = new Event('commentPosted');
 const commentSubmission = document.getElementById("comments-submission");
 commentSubmission.addEventListener("submit", function(event) {
     event.preventDefault();
-
     //check data
     sendData(new FormData(commentSubmission));
     commentSubmission.reset();
@@ -18,6 +17,8 @@ function sendData(data) {
     console.log(Date.now());
     console.log(data.get('username'));
     console.log(data.get('comment'));
+    const author = sanitizeString(data.get('username'));
+    const content = sanitizeString(data.get('comment'))
     try{
         let xhr = new XMLHttpRequest();
         xhr.open("PUT", "https://cw5ebt4e77.execute-api.us-east-2.amazonaws.com/comments");
@@ -25,8 +26,8 @@ function sendData(data) {
         xhr.send(JSON.stringify({
             "pageId": getCurrentPage().toString(),
             "commentId": Date.now().toString(),
-            "author": data.get('username'),
-            "content": data.get('comment')
+            "author": author,
+            "content": content
         }));
         xhr.addEventListener("load", function () {
             console.log(xhr.response);
@@ -64,4 +65,18 @@ export function deleteComment(pageNum, commentId){
     } catch(error) {
         alert("Failed deleting comment. Error: " + error);
     }
+}
+
+function sanitizeString(input){
+    var str = encodeString(input)
+    return str;
+}
+
+function encodeString(input){
+    var str = input;
+    console.log("encoding");
+    str = str.replace("*", "star");
+    str = str.replace("\"", "&quot");
+    str = str.replace("\'", "&#39");
+    return str;
 }
