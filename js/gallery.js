@@ -1,10 +1,7 @@
-import {findGetParameter} from '../js/components.js';
 import {pageFromURL} from '../js/components.js';
-import {getPageComments, deleteComment} from '../js/commentsHandler.js';
+import {getPageComments, deleteComment, encodeString} from '../js/commentsHandler.js';
 
-import {commentPostEvent} from '../js/commentsHandler.js';
-
-let currentPage = null;
+var currentPage = null;
 try {
     currentPage = pageFromURL(location);
 } catch (e){
@@ -24,54 +21,47 @@ const imgFolder = "../pages";
 const pre = "page-";
 const ext = "jpg";
 
+//Call the html generator functions on the placeholder divs in html file
 writePageButtons();
 displayPage(".displayPage");
 writeTags(".writeTags", currentPage);
 writeComments(".writeComments");
 
-
+/**
+ * Generate html for the current comic page and slot it into parameter div
+ * @param {*} div 
+ */
 export function displayPage(div) {
-
-    let altText = "Error: Image alt text not found";
-    let title = "Error: Image title not found";
-
     if (!currentPage){ //default to the first page
         currentPage = 1;
     }
-
-    if (pageData.length < currentPage){
-        //TODO: handling
-    } else if (pageData.length >= currentPage) {
-        let pageInfo = pageData[currentPage - 1];
-        altText = pageInfo.altText;
-        title = pageInfo.title;
-
-        document.querySelector(div).innerHTML = getPageHtml(currentPage);
-    }
+    document.querySelector(div).innerHTML = getPageHtml(currentPage);
 }
 
 //Moved into a separate function for testing
 export function getPageHtml(page){
-    let altText = "Error: Image alt text not found";
-    let title = "Error: Image title not found";
+    let altText = "Error: Image data not found";
+    let title = "Error: Image data not found";
 
-    //if (!currentPage){ //default to the first page
-    //    currentPage = 1;
-    //}
+    let path = imgFolder.concat("/", pre);
 
     if (pageData.length < page){
-        //TODO: handling
+        //leave path incomplete so that error alt text will display
     } else if (pageData.length >= page) {
         let pageInfo = pageData[page - 1];
-        altText = pageInfo.altText;
+        altText = pageInfo.alt;
         title = pageInfo.title;
 
-        const path = imgFolder.concat("/", pre, page, ".", ext)
-        const content = '<div class="comic-page"><img class = page-display alt=' + altText + ' title=' + title + ' src=' + path + '></div>';
-        return content;
+        path = path.concat(page, ".", ext)
     }
+    const content = `<div class="comic-page"><img class = page-display alt="${altText}" title="${title}" src="${path}"></div>`;
+    console.log("content: " + content);
+    return content;
 }
 
+/**
+ * Generate html for the left and right page navigation keys
+ */
 function writePageButtons() {
     let pageButtonDiv = document.querySelectorAll(".writePageButtons");
     pageButtonDiv.forEach(function(divElement) {
@@ -87,7 +77,6 @@ function writePageButtons() {
         const inactiveNav = `<img src="../assets/arrow-left-temp.png" class="inactive-nav" alt="No Previous Page" title="No previous page">`;
     
         if (!currentPage){
-            //TODO handle error
             return inactiveNav;
         }
 
@@ -110,10 +99,15 @@ function writePageButtons() {
         } else {
             return inactiveNav;
         }
-
     }
 }
 
+/**
+ * Write tags underneath the page as comic-index links that filter by that tag.
+ * Tags are hard-coded in pageData
+ * @param {*} div 
+ * @param {*} pageNum 
+ */
 function writeTags(div, pageNum){
     let content = "";
 
@@ -125,7 +119,12 @@ function writeTags(div, pageNum){
     document.querySelector(div).innerHTML = content;
 }
 
+/**
+ * Call commentsHandler functions to get comment data from AWS and write it as html into the writeComments plaveholder div
+ * @param {*} div 
+ */
 export function writeComments(div){
+    //holder is an empty object that will have a data property added to it when the HTTP request loads
     const holder = new Object();
 
     document.addEventListener('dataReady', function () {
@@ -137,12 +136,13 @@ export function writeComments(div){
             //Need to parse that string back into a number, then into a datetime
             const timestamp = new Date(parseInt(comment.commentId));
             
-            var commentDiv = document.createElement('div');
+            var commentDiv = document.createElement('li');
             commentDiv.setAttribute("class", "comment-container");
 
             let header = document.createElement('h3');
             header.class = "comment-author";
-            header.textContent = comment.author;
+            let author = encodeString(comment.author, true);
+            header.textContent = author;
             commentDiv.appendChild(header);
 
             let time = document.createElement('time');
@@ -152,7 +152,8 @@ export function writeComments(div){
             
             let paragraph = document.createElement('p');
             paragraph.class = "comment-content";
-            paragraph.textContent = comment.content;
+            let content = encodeString(comment.content, true);
+            paragraph.textContent = content;
             commentDiv.appendChild(paragraph);
 
             const deleteLink = document.createElement('a');
@@ -164,12 +165,9 @@ export function writeComments(div){
                 deleteComment(currentPage, comment.commentId);
             });
             commentDiv.append(deleteLink);
-            //content = innerContent + content;
-            //commentList.appendChild(commentDiv);
+
             commentList.insertBefore(commentDiv, commentList.firstChild);
         })
-        //outerContent += content;
-        //outerContent += `</ul>`;
         document.querySelector(div).appendChild(commentList);
         console.log(holder.data);
     })
@@ -177,6 +175,11 @@ export function writeComments(div){
     getPageComments(holder, currentPage);
 }
 
+/**
+ * Utility function for formatting a date object into a 'month day year time am/pm' format
+ * @param {*} date 
+ * @returns 
+ */
 function formatDate(date){
     var dateString = date.toDateString().substring(3);
     var hour = date.getHours();
@@ -186,8 +189,4 @@ function formatDate(date){
         ampm = "pm";
     }
     return `${dateString}, ${hour}:${date.getMinutes()} ${ampm}`;
-}
-
-function sayHi(){
-    alert("hi");
 }

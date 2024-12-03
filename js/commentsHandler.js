@@ -68,15 +68,24 @@ export function deleteComment(pageNum, commentId){
 }
 
 function sanitizeString(input){
-    var str = encodeString(input)
+    var str = encodeString(input, false)
     return str;
 }
 
-function encodeString(input){
+export function encodeString(input, decoding){
     var str = input;
     console.log("encoding");
-    str = str.replace("*", "star");
-    str = str.replace("\"", "&quot");
-    str = str.replace("\'", "&#39");
+
+    const encoding = [["\"", "&quot"], ["\'", "&#39"], ["\`", "&#96"],
+                        ["<", "&#60"], [">", "&#62"], ["=", "&#61"],
+                        ["GET", "&get"], ["PUT", "&put"], ["DELETE", "&del"]];
+
+    encoding.forEach((pair) => {
+        if (decoding){
+            str = str.replace(pair[1], pair[0]);
+        } else {
+            str = str.replace(pair[0], pair[1]);
+        }
+    });
     return str;
 }
