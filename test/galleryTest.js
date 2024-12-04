@@ -1,5 +1,8 @@
 import {findGetParameter, pageFromURL} from '../js/components.js';
 import {displayPage, getPageHtml} from '../js/gallery.js';
+
+import {getPageComments, sendData, deleteComment} from '../js/commentsHandler.js';
+
 //import {displayPage} from '../js/gallery.js';
 
 var urlBase = "https://example.com";
@@ -139,16 +142,12 @@ QUnit.module('Gallery', function() {
         assert.equal(secondChild.src, expectedPath);
     });
 
-
+    /*
     QUnit.test('display page sets correct title and alt text for valid page number 1', function(assert) {
         let pageDisplay = document.querySelector(".displayPage");
         
         displayPage(".displayPage");
 
         assert.true(true);
-    });
-});
-
-QUnit.module('Comments', function() {
-
+    });*/
 });

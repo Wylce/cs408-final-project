@@ -1,5 +1,5 @@
 import {pageFromURL} from '../js/components.js';
-import {getPageComments, deleteComment, encodeString} from '../js/commentsHandler.js';
+import {getPageComments, sendData, deleteComment, encodeString} from '../js/commentsHandler.js';
 
 var currentPage = null;
 try {
@@ -119,11 +119,21 @@ function writeTags(div, pageNum){
     document.querySelector(div).innerHTML = content;
 }
 
+//Event listeners to reqrite the comments section when a change occurs
+document.addEventListener('commentAdded', function () {
+    console.log("comments updated");
+    writeComments(".writeComments")});
+
+document.addEventListener('commentDeleted', function () {
+    console.log("comments updated");
+    writeComments(".writeComments")});
+
 /**
  * Call commentsHandler functions to get comment data from AWS and write it as html into the writeComments plaveholder div
  * @param {*} div 
  */
 export function writeComments(div){
+    console.log("writing comments");
     //holder is an empty object that will have a data property added to it when the HTTP request loads
     const holder = new Object();
 
@@ -172,8 +182,28 @@ export function writeComments(div){
         console.log(holder.data);
     })
 
-    getPageComments(holder, currentPage);
+    try {
+        getPageComments(holder, currentPage);
+    } catch (error) {
+        document.querySelector(div).innerHTML = "Could not load comments: " + error;
+    }
 }
+
+const commentSubmission = document.getElementById("comments-submission");
+commentSubmission.addEventListener("submit", function(event) {
+    event.preventDefault();
+    //check data
+    try{
+        let data = new FormData(commentSubmission);
+        data.timeStamp = Date.now();
+        data.pageNumber = currentPage;
+        sendData(data)
+        //sendData(new FormData(commentSubmission));
+    } catch (error){
+        alert(error);
+    }
+    commentSubmission.reset();
+})
 
 /**
  * Utility function for formatting a date object into a 'month day year time am/pm' format
@@ -183,10 +213,14 @@ export function writeComments(div){
 function formatDate(date){
     var dateString = date.toDateString().substring(3);
     var hour = date.getHours();
+    var minutes = date.getMinutes();
     var ampm = "am";
     if(hour > 12){
         hour = hour - 12;
         ampm = "pm";
     }
-    return `${dateString}, ${hour}:${date.getMinutes()} ${ampm}`;
+    if(date.getMinutes() < 10){
+        minutes = "0" + minutes;
+    }
+    return `${dateString}, ${hour}:${minutes} ${ampm}`;
 }

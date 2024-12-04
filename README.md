@@ -1,4 +1,42 @@
-# Web Dev Starter Code
+# Sundowner Webcomic Site
+
+Wylie Hansen  
+CS 408 - Final Project  
+December 3, 2024  
+
+## Overview
+
+This is a webcomic site for a short 5 page comic. Pages include the index, which
+has some general information and a page directory, the Gallery, where the comic pages
+can be read and navigated, the comic index, which lists direct links to all pages and
+can be filtered by tags, and the artist page, which gives more information about the artist.
+
+## Running
+
+This program can be run on a local server through VSCode's preview function.
+Note that the preview function is only available with the Live Preview extension
+installed.
+
+With the extension installed, open a preview of index.html with the "Show
+Preview" button, which should be in the upper right corner of the editor
+workspace. You can then copy the url into your browser of choice.
+
+## Usage
+
+The home page is a directory, and includes links to the other pages in descriptive sections.
+
+The Gallery page hosts the comic. The display shows one page at a time and the pages can be changed
+with the arrow shaped buttons that appear at the top and bottom of the page. There is a list of
+tags below the page, and clicking on the tags will link you to an index search for all other pages
+with that tag. There is a comments section at the bottom, which shows a list of comments specific to
+the current page and a form where you can submit your own comment.
+
+The Comic Index page lets you see links to all comic pages displayed with thumbnails for the page. Clicking
+on the link or the image will take you directly to the page. There is a search bar at the top of this page,
+where you can filter the pages being displayed based on page tags.
+
+The Artist page includes information about the artist along with image examples of other work. Clicking
+on the example images will expand them, and clicking on them again will shrink them back down.
 
 ## Project Spec
 
@@ -54,10 +92,10 @@ something I should look into implementing.
 
 ## Project Wireframe
 
-TODO: Replace the wireframe below with you own design.
-
 ![wireframe](FinalGalleryWireframe.JPG)
 
 
 ## Sources
-https://github.com/geno7/Rarebit.git
+ - Gallery skeleton: https://github.com/geno7/Rarebit.git
+ - HTML, CSS, and Javascript syntax: https://developer.mozilla.org/en-US/docs/Web/HTML
+ - Starter code: https://github.com/shanep/cs408-final-project

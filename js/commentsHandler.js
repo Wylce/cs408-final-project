@@ -1,22 +1,12 @@
-import{getCurrentPage} from '../js/gallery.js';
-import{writeComments} from '../js/gallery.js';
-
 export const dataEvent = new Event('dataReady');
-export const commentPostEvent = new Event('commentPosted');
+export const commentAddEvent = new Event('commentAdded');
+export const commentDeleteEvent = new Event('commentDeleted');
 
-const commentSubmission = document.getElementById("comments-submission");
-commentSubmission.addEventListener("submit", function(event) {
-    event.preventDefault();
-    //check data
-    sendData(new FormData(commentSubmission));
-    commentSubmission.reset();
-})
-
-function sendData(data) {
-    console.log(getCurrentPage());
-    console.log(Date.now());
-    console.log(data.get('username'));
-    console.log(data.get('comment'));
+/**
+ * Send comment data to the table
+ * @param {*} data 
+ */
+export function sendData(data) {
     const author = sanitizeString(data.get('username'));
     const content = sanitizeString(data.get('comment'))
     try{
@@ -24,18 +14,17 @@ function sendData(data) {
         xhr.open("PUT", "https://cw5ebt4e77.execute-api.us-east-2.amazonaws.com/comments");
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify({
-            "pageId": getCurrentPage().toString(),
-            "commentId": Date.now().toString(),
+            "pageId": data.pageNumber.toString(),
+            "commentId": data.timeStamp.toString(),
             "author": author,
             "content": content
         }));
         xhr.addEventListener("load", function () {
             console.log(xhr.response);
-            //document.dispatchEvent(commentPostEvent);
-            writeComments(".writeComments");
+            document.dispatchEvent(commentAddEvent);
         });
     } catch (error) {
-        console.log("Failed posting comment. Error: " + error);
+        throw new Error("Failed posting comment. Error: " + error);
     }
 }
 
@@ -50,7 +39,7 @@ export function getPageComments(holder, pageNum){
         xhr.open("GET", "https://cw5ebt4e77.execute-api.us-east-2.amazonaws.com/comments/" + pageNum);
         xhr.send();
     } catch(error) {
-        alert("Failed loading comments. Error: " + error);
+        throw new Error("Failed loading comments. Error: " + error);
     }
 }
 
@@ -58,7 +47,8 @@ export function deleteComment(pageNum, commentId){
     try {
         let xhr = new XMLHttpRequest();
         xhr.addEventListener("load", function () {
-            writeComments(".writeComments");
+            document.dispatchEvent(commentDeleteEvent);
+            //writeComments(".writeComments");
         })
         xhr.open("DELETE", "https://cw5ebt4e77.execute-api.us-east-2.amazonaws.com/comments/" + pageNum + "/" + commentId);
         xhr.send();
