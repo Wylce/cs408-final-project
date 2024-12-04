@@ -1,4 +1,5 @@
- const pageData = [
+//Define metadata that matches to a page image for each page in the comic
+const pageData = [
     {
         pageNum: 1,
         title: "Quiet night",

@@ -1,3 +1,4 @@
+//Fills a div with the class .write-ehader with the site header
 document.querySelector(".write-header").innerHTML = `
     <header>
     <h1>Sundowner</h1>
@@ -12,6 +13,11 @@ document.querySelector(".write-header").innerHTML = `
   </header>
 `;
 
+/**
+ * Parse a given url for a page query term and associated value
+ * @param {*} url 
+ * @returns 
+ */
 export function pageFromURL(url){
   const page = findGetParameter(url, "page");
   if (!page){
@@ -26,6 +32,13 @@ export function pageFromURL(url){
   return pageNum;
 }
 
+/**
+ * General function for parsing a given query paramater and value from
+ * a url
+ * @param {*} url 
+ * @param {*} parameterName 
+ * @returns 
+ */
 export function findGetParameter(url, parameterName){
   let result = null;
   let item = url.search.substr(1);

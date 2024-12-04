@@ -1,8 +1,6 @@
 import {findGetParameter, pageFromURL} from '../js/components.js';
 import {displayPage, getPageHtml} from '../js/gallery.js';
 
-import {getPageComments, sendData, deleteComment} from '../js/commentsHandler.js';
-
 //import {displayPage} from '../js/gallery.js';
 
 var urlBase = "https://example.com";

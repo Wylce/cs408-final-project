@@ -70,6 +70,17 @@ h3{
   text-align: left;
 }
 
+section{
+  background-color: white;
+  margin-top: 15px;
+  padding-top: 15px;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+
+}
+
+/*Nav bar styling*/
+
 nav{
   display: block;
 }
@@ -96,14 +107,7 @@ nav ul li a:hover{
   background-color: rgb(238, 237, 237);
 }
 
-section{
-  background-color: white;
-  margin-top: 15px;
-  padding-top: 15px;
-  margin-bottom: 25px;
-  padding-bottom: 15px;
-
-}
+/*--About page styling--*/
 
 .two-column{
   display: grid;
@@ -126,6 +130,8 @@ section{
 .character-profile img{
   height: 100%;
 }
+
+/*--Artist page styling--*/
 
 .work-samples{
   list-style: none;
@@ -157,6 +163,8 @@ section{
 .focus-image:hover{
   cursor: pointer;
 }
+
+/*--General small screen styling--*/
 
 @media only screen and (max-width: 1000px) {
   

@@ -28,6 +28,11 @@ export function sendData(data) {
     }
 }
 
+/**
+ * Request all comments associated with parition key pageNum
+ * @param {*} holder 
+ * @param {*} pageNum 
+ */
 export function getPageComments(holder, pageNum){
     try {
         let xhr = new XMLHttpRequest();
@@ -43,6 +48,11 @@ export function getPageComments(holder, pageNum){
     }
 }
 
+/**
+ * Delete a comment with its partition key pageNum and sort key commentId
+ * @param {*} pageNum 
+ * @param {*} commentId 
+ */
 export function deleteComment(pageNum, commentId){
     try {
         let xhr = new XMLHttpRequest();
@@ -57,11 +67,23 @@ export function deleteComment(pageNum, commentId){
     }
 }
 
+/**
+ * Remove potentially dangerous characters or commands from user text input
+ * @param {*} input 
+ * @returns 
+ */
 function sanitizeString(input){
     var str = encodeString(input, false)
     return str;
 }
 
+/**
+ * Encode and decode a set of potentially dangerous characters or phrases to
+ * sanitize user inputs
+ * @param {*} input 
+ * @param {*} decoding 
+ * @returns 
+ */
 export function encodeString(input, decoding){
     var str = input;
     console.log("encoding");

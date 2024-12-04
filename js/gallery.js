@@ -21,7 +21,7 @@ const imgFolder = "../pages";
 const pre = "page-";
 const ext = "jpg";
 
-//Call the html generator functions on the placeholder divs in html file
+//Call the html writer functions on the placeholder divs in html file
 writePageButtons();
 displayPage(".displayPage");
 writeTags(".writeTags", currentPage);
@@ -198,7 +198,6 @@ commentSubmission.addEventListener("submit", function(event) {
         data.timeStamp = Date.now();
         data.pageNumber = currentPage;
         sendData(data)
-        //sendData(new FormData(commentSubmission));
     } catch (error){
         alert(error);
     }

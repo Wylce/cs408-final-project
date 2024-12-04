@@ -4,7 +4,11 @@ import {pageFromURL} from '../js/components.js';
 writeIndex(".write-index");
 
 
-
+/**
+ * Fill the given div with html for a list of links to comic pages, filtered
+ * by url query filter
+ * @param {*} div 
+ */
 function writeIndex(div){
     let filter = findGetParameter(location, "filter");
     console.log(filter);
@@ -12,6 +16,7 @@ function writeIndex(div){
 
     let filteredIndex = [];
 
+    //Check all page tags and put all pages that have the filter into filteredIndex
     if (!filter){
         filteredIndex = pageData;
     } else {
